@@ -5,6 +5,10 @@
 <meta name="description" content="{{ article.summary|striptags|escape }}" />
 <meta name="keywords" content="{{ article.tags|join(', ')|escape }}">
 
+{% if PLUGINS and 'pelican.plugins.activitypub' in PLUGINS %}
+<link rel="alternate" type="application/activity+json" href="{{ SITEURL }}/activitypub/posts/{{ article.slug }}">
+{% endif %}
+
 {% if article.translations -%}
 <link rel="alternate" href="{{ SITEURL }}/{{ article.url }}" hreflang="{{ article.lang }}" />
 {% for a in article.translations %}
